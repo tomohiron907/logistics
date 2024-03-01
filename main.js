@@ -1,14 +1,31 @@
-// Set up Three.js scene
+// ウィンドウのリサイズイベントを監視
+window.addEventListener('resize', function () {
+    // ウィンドウの幅と高さを取得
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    
+    // カメラのアスペクト比を更新
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    // レンダラーのサイズを更新
+    renderer.setSize(width, height);
+});
+
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+// Set up camera position
+camera.position.z = 5;
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(window.innerWidth, window.innerHeight/2);
+//document.body.appendChild(renderer.domElement);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 
 // Create boundary box
 const boundarySize = 5;
 const boundaryGeometry = new THREE.PlaneGeometry(boundarySize, boundarySize);
-const boundaryMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
+const boundaryMaterial = new THREE.MeshBasicMaterial({ color: 0x2b2b2b, side: THREE.DoubleSide });
 const boundary = new THREE.Mesh(boundaryGeometry, boundaryMaterial);
 scene.add(boundary);
 
@@ -93,8 +110,7 @@ function isColliding(circle1, circle2) {
     var distance = Math.sqrt(dx * dx + dy * dy);
     return distance < 2 * radius;
 }
-// Set up camera position
-camera.position.z = 5;
+
 
 // Render loop
 function animate() {
@@ -141,4 +157,4 @@ setInterval(() => {
     for (var i = 0; i < circles.length; i++) {
         circles[i].canBirth = true;
     }
-}, 500);
+}, 200);
