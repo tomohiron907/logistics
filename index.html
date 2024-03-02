@@ -5,14 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>p5 sample</title>
+    
+    <!-- 外部ライブラリの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script src="sketch.js"></script>
-    <div id="canvas-container"></div>
-    <script src="chart.js"></script>
 
+    <!-- スタイルシート -->
+    <style>
+        /* コンテナのスタイル */
+        #sketch-container {
+            width: 800px; /* コンテナの幅 */
+            height: 800px; /* コンテナの高さ */
+            margin: 0 auto; /* 中央揃え */
+        }
+        
+        #chart-container {
+            width: 800px; /* コンテナの幅 */
+            margin: 0 auto; /* 中央揃え */
+        }
+
+            /* スマホ版のスタイル */
+        @media only screen and (max-width: 600px) {
+            #sketch-container {
+                width: 90%; /* スマホ版の幅 */
+                height: auto; /* 高さを自動調整 */
+            }
+            
+            #chart-container {
+                width: 90%; /* スマホ版の幅 */
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- sketch.jsのコンテナ -->
+    <div id="sketch-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="sketch.js"></script>
+
+    <!-- chart.jsのコンテナ -->
+    <div id="chart-container">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    </div>
 </body>
 </html>

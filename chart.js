@@ -3,7 +3,8 @@
 // グラフの初期化
 // グラフの初期化
 var ctx = document.createElement('canvas').getContext('2d');
-document.body.appendChild(ctx.canvas);
+var chartContainer = document.getElementById('chart-container');
+chartContainer.appendChild(ctx.canvas);
 var chart = new Chart(ctx, {
     type: 'line',
     data: {

@@ -24,7 +24,8 @@ class Circle {
 }
 
 function setup() {
-    createCanvas(800, 800);
+    canvas = createCanvas(800, 800);
+    canvas.parent('sketch-container');
     transparency = 0;
     // サークルの初期化
     for (let i = 0; i < numCircles; i++) {
@@ -108,7 +109,10 @@ function mouseClicked() {
     // マウスがクリックされたときに実行される関数
     createCircle(mouseX, mouseY);
 }
-
+function touchStarted() {
+    // マウスがクリックされたときに実行される関数
+    createCircle(mouseX, mouseY);
+}
 
 setInterval(() => {
     for (var i = 0; i < circles.length; i++) {
