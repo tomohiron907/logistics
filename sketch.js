@@ -1,5 +1,22 @@
-let numCircles = 10;
+
+const slider = document.getElementById('slider');
+slider.oninput = function() {
+    console.log(this.value);
+    sliderValue.textContent = slider.value;
+    numCircles = this.value;
+    circles = [];
+    for (let i = 0; i < numCircles; i++) {
+        x = random(width)
+        y = random(height)
+        createCircle(x, y);
+    }
+}
+
+
+
+let numCircles = slider.value; // サークルの数
 let circles = [];
+let isAnimating = false;    
 
 
 class Circle {
@@ -11,7 +28,7 @@ class Circle {
         this.y = y;
         this.dx = random(-2, 2); // X軸方向の速度
         this.dy = random(-2, 2); // Y軸方向の速度
-        this.diameter = 20; // 円の直径
+        this.diameter = 10; // 円の直径
         this.canBirth = true;
         this.updateElapsedTime();
     }
@@ -24,8 +41,11 @@ class Circle {
 }
 
 function setup() {
-    canvas = createCanvas(800, 800);
+    const container = document.getElementById('sketch-container');
+    canvas = createCanvas(container.offsetWidth, container.offsetHeight);
     canvas.parent('sketch-container');
+    document.getElementById('startAnimationButton').addEventListener('click', startAnimation);
+    background(250);
     transparency = 0;
     // サークルの初期化
     for (let i = 0; i < numCircles; i++) {
@@ -36,55 +56,62 @@ function setup() {
 }
 
 function draw() {
-    background(220);
-    
-    // 各円を描画し、移動させる
-    for (let i = 0; i < circles.length; i++) {
-        let circle = circles[i];
-        let parent1 = circles[i];
-        circle.updateElapsedTime();
-        if (!circle.canBirth){
-            fillcolor = color(128, 128, 128, (1-circle.normalAge)*255); 
-        }
-        else{
-            if (circle.sex === 'Male') {
-                fillcolor = color(0, 0, 255, (1-circle.normalAge)*255);
-            }
-            else {
-                fillcolor = color(255, 0, 0, (1-circle.normalAge)*255);
-            }
-        }
-        fill(fillcolor); 
-        // 円を描画
-        noStroke();
-        ellipse(circle.x, circle.y, circle.diameter);
-        
-        // 位置を更新
-        circle.x += circle.dx;
-        circle.y += circle.dy;
-        
-        // 画面端で跳ね返る処理
-        if (circle.x < 0 || circle.x > width) {
-        circle.dx *= -1;
-        }
-        if (circle.y < 0 || circle.y > height) {
-        circle.dy *= -1;
-        }
-        for (var j = 0; j < circles.length; j++) {
-            var parent2 = circles[j];
-            if (i !== j 
-                && isColliding(parent1, parent2) 
-                && parent1.sex !== parent2.sex 
-                && parent1.canBirth
-                && parent2.canBirth) {
-                    createCircle((parent1.x + parent2.x) / 2, (parent1.y + parent2.y) / 2);
-                    parent1.canBirth = false;
-                    parent2.canBirth = false;
-                    break;
-            }
-        }
+    if (isAnimating){
+        play();
     }
-    deleteCircle();
+
+}
+
+function play(){
+        background(250); //画面のリセット
+        //console.log(circles.length);
+        // 各円を描画し、移動させる
+        for (let i = 0; i < circles.length; i++) {
+            let circle = circles[i];
+            let parent1 = circles[i];
+            circle.updateElapsedTime();
+            if (!circle.canBirth){
+                fillcolor = color(128, 128, 128, (1-circle.normalAge)*255); 
+            }
+            else{
+                if (circle.sex === 'Male') {
+                    fillcolor = color(0, 0, 255, (1-circle.normalAge)*255);
+                }
+                else {
+                    fillcolor = color(255, 0, 0, (1-circle.normalAge)*255);
+                }
+            }
+            fill(fillcolor); 
+            // 円を描画
+            noStroke();
+            ellipse(circle.x, circle.y, circle.diameter);
+            
+            // 位置を更新
+            circle.x += circle.dx;
+            circle.y += circle.dy;
+            
+            // 画面端で跳ね返る処理
+            if (circle.x < 0 || circle.x > width) {
+            circle.dx *= -1;
+            }
+            if (circle.y < 0 || circle.y > height) {
+            circle.dy *= -1;
+            }
+            for (var j = 0; j < circles.length; j++) {
+                var parent2 = circles[j];
+                if (i !== j 
+                    && isColliding(parent1, parent2) 
+                    && parent1.sex !== parent2.sex 
+                    && parent1.canBirth
+                    && parent2.canBirth) {
+                        createCircle((parent1.x + parent2.x) / 2, (parent1.y + parent2.y) / 2);
+                        parent1.canBirth = false;
+                        parent2.canBirth = false;
+                        break;
+                }
+            }
+        }
+        deleteCircle();
 }
 
 function isColliding(circle1, circle2) {
@@ -101,7 +128,7 @@ function deleteCircle() {
     for (var i = 0; i < circles.length; i++) {
         if (circles[i].age > circles[i].lifeSpan) {
             circles.splice(i, 1);
-            console.log(circles.length)
+            //console.log(circles.length)
         }
     }
 }
@@ -109,13 +136,21 @@ function mouseClicked() {
     // マウスがクリックされたときに実行される関数
     createCircle(mouseX, mouseY);
 }
-function touchStarted() {
-    // マウスがクリックされたときに実行される関数
-    createCircle(mouseX, mouseY);
+//function touchStarted() {
+//    // マウスがクリックされたときに実行される関数
+//    createCircle(mouseX, mouseY);
+//}
+function windowResized() {
+    const container = document.getElementById('sketch-container');
+    resizeCanvas(container.offsetWidth, container.offsetHeight);
 }
-
 setInterval(() => {
     for (var i = 0; i < circles.length; i++) {
         circles[i].canBirth = true;
     }
 }, 1000);
+
+function startAnimation() {
+    // アニメーションフラグをtrueに設定して、アニメーションを開始する
+    isAnimating = true;
+  }

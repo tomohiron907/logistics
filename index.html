@@ -14,18 +14,18 @@
     <style>
         /* コンテナのスタイル */
         #sketch-container {
-            width: 800px; /* コンテナの幅 */
-            height: 800px; /* コンテナの高さ */
+            width: 400px; /* コンテナの幅 */
+            height: 400px; /* コンテナの高さ */
             margin: 0 auto; /* 中央揃え */
         }
         
         #chart-container {
-            width: 800px; /* コンテナの幅 */
+            width: 400px; /* コンテナの幅 */
             margin: 0 auto; /* 中央揃え */
         }
 
             /* スマホ版のスタイル */
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 400px) {
             #sketch-container {
                 width: 90%; /* スマホ版の幅 */
                 height: auto; /* 高さを自動調整 */
@@ -38,15 +38,21 @@
     </style>
 </head>
 <body>
+    <button id="startAnimationButton">Start Simulation</button>
+
+    <input type="range" min="0" max="100" value="50" id="slider">
+    <p>Initial circles: <span id="sliderValue">50</span></p>
+
     <!-- sketch.jsのコンテナ -->
     <div id="sketch-container"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="sketch.js"></script>
 
     <!-- chart.jsのコンテナ -->
-    <div id="chart-container">
+    <div id="chart-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="chart.js"></script>
-    </div>
+
+
 </body>
 </html>
