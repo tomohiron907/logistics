@@ -38,15 +38,14 @@
     </style>
 </head>
 <body>
-    <button id="startAnimationButton">Start Simulation</button>
 
     <input type="range" min="0" max="100" value="50" id="slider">
     <p>Initial circles: <span id="sliderValue">50</span></p>
 
-    <!-- sketch.jsのコンテナ -->
-    <div id="sketch-container"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <div id="sketch-container" style="position: relative;">
+    <button id="startAnimationButton" style="position: relative; top: 0; left: 0;">Start Simulation</button>
     <script src="sketch.js"></script>
+    </div>
 
     <!-- chart.jsのコンテナ -->
     <div id="chart-container"></div>
