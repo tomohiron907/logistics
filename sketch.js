@@ -1,33 +1,19 @@
 
-const slider = document.getElementById('slider');
-slider.oninput = function() {
-    console.log(this.value);
-    sliderValue.textContent = slider.value;
-    numCircles = this.value;
-    circles = [];
-    for (let i = 0; i < numCircles; i++) {
-        x = random(width)
-        y = random(height)
-        createCircle(x, y);
-    }
-}
-
-
-
-let numCircles = slider.value; // サークルの数
+let numCircles = circleNumSlider.value; // サークルの数
 let circles = [];
 let isAnimating = false;    
-
+let environmentNum = envNumSlider.value;
+let speed = speedNumSlider.value;
 
 class Circle {
     constructor(x, y) {
         this.sex = (Math.random()>0.5) ? 'Male' :'Female'; 
-        this.lifeSpan = Math.random() *200/circles.length; // 10〜30秒の間でランダムに寿命を設定
+        this.lifeSpan = Math.random() *environmentNum/circles.length; // 10〜30秒の間でランダムに寿命を設定
         this.creationTime = new Date();
         this.x = x;
         this.y = y;
-        this.dx = random(-2, 2); // X軸方向の速度
-        this.dy = random(-2, 2); // Y軸方向の速度
+        this.dx = random(-speed, speed); // X軸方向の速度
+        this.dy = random(-speed, speed); // Y軸方向の速度
         this.diameter = 10; // 円の直径
         this.canBirth = true;
         this.updateElapsedTime();
@@ -153,4 +139,13 @@ setInterval(() => {
 function startAnimation() {
     // アニメーションフラグをtrueに設定して、アニメーションを開始する
     isAnimating = true;
-  }
+    environmentNum = envNumSlider.value;
+    speed = speedNumSlider.value;
+    circles = [];
+    numCircles = circleNumSlider.value;
+    for (let i = 0; i < numCircles; i++) {
+        x = random(width)
+        y = random(height)
+        createCircle(x, y);
+    }
+}

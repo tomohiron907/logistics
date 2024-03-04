@@ -23,24 +23,41 @@
             width: 400px; /* コンテナの幅 */
             margin: 0 auto; /* 中央揃え */
         }
-
-            /* スマホ版のスタイル */
-        @media only screen and (max-width: 400px) {
-            #sketch-container {
-                width: 90%; /* スマホ版の幅 */
-                height: auto; /* 高さを自動調整 */
-            }
-            
-            #chart-container {
-                width: 90%; /* スマホ版の幅 */
-            }
+        #parameters-contaner {
+            width: 400px; /* コンテナの幅 */
+            margin: 0 auto; /* 中央揃え */
         }
+        .slider {
+            width: 200px; /* スライダの幅 */
+            margin: 10px; /* スライダ間のマージン */
+        }
+        /* スマホ版のスタイル 
+        @media only screen and (max-width: 400px) {
+            #sketch-container, #chart-container {
+                width: 90%;
+                height: 90%; 
+            }
+        }*/
+        
+
     </style>
 </head>
-<body>
 
-    <input type="range" min="0" max="100" value="50" id="slider">
-    <p>Initial circles: <span id="sliderValue">50</span></p>
+<body>
+    <div id="parameter-conatainer">
+        <input type="range" min="0" max="100" value="10" class="slider" id="circleNumSlider">
+        初期数: <span id="circleNumValue">10</span>
+
+        <input type="range" min="0" max="1000" value="200" class="slider" id="environmentConstSlider">
+        環境定数: <span id="environmentConstValue">200</span>
+
+        <input type="range" min="0" max="5" value="2.5" class="slider" id="speedSlider">
+        スピード: <span id="speedValue">2.5</span>
+
+        <script src="sliders.js"></script>
+
+    </div>
+    
 
     <div id="sketch-container" style="position: relative;">
     <button id="startAnimationButton" style="position: relative; top: 0; left: 0;">Start Simulation</button>
@@ -48,10 +65,10 @@
     </div>
 
     <!-- chart.jsのコンテナ -->
-    <div id="chart-container"></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="chart.js"></script>
 
+    <div id="chart-container">
+    <script src="chart.js"></script>
+    </div>
 
 </body>
 </html>
