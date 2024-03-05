@@ -1,9 +1,9 @@
 
-let numCircles = circleNumSlider.value; // サークルの数
+let numCircles = 10; // サークルの数
 let circles = [];
 let isAnimating = false;    
-let environmentNum = envNumSlider.value;
-let speed = speedNumSlider.value;
+let environmentNum = 200;
+let speed = 2;
 
 class Circle {
     constructor(x, y) {
@@ -31,7 +31,8 @@ function setup() {
     canvas = createCanvas(container.offsetWidth, container.offsetHeight);
     canvas.parent('sketch-container');
     document.getElementById('startAnimationButton').addEventListener('click', startAnimation);
-    background(250);
+    document.getElementById('stopAnimationButton').addEventListener('click', stopAnimation);
+    background(40,46,61);
     transparency = 0;
     // サークルの初期化
     for (let i = 0; i < numCircles; i++) {
@@ -49,7 +50,7 @@ function draw() {
 }
 
 function play(){
-        background(250); //画面のリセット
+        background(40,46,61); //画面のリセット
         //console.log(circles.length);
         // 各円を描画し、移動させる
         for (let i = 0; i < circles.length; i++) {
@@ -148,4 +149,8 @@ function startAnimation() {
         y = random(height)
         createCircle(x, y);
     }
+}
+function stopAnimation() {
+    // アニメーションフラグをfalseに設定して、アニメーションを停止する
+    isAnimating = false;
 }

@@ -1,0 +1,79 @@
+body {
+    background-color: rgb(20,23,31); /* ここに背景色を指定します。 */
+    margin: 10px;
+    color: white;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+/* コンテナのスタイル */
+#sketch-container {
+    width: 400px; /* コンテナの幅 */
+    height: 400px; /* コンテナの高さ */
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 10px; /* コンテナ間のスペース */
+}
+
+#chart-container {
+    width: 400px; /* コンテナの幅 */
+    background-color: rgb(40,46,61);
+    border-radius: 20px;
+    margin-bottom: 10px; /* コンテナ間のスペース */
+}
+
+
+.sliders-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(40,46,61);
+    border-radius: 20px;
+}
+.slider {
+    width: 200px; /* スライダの幅 */
+    margin: 10px; /* スライダ間のマージン */
+    background-color: rgb(40,46,61);
+}
+.slider-container {
+    width: 400px; /* コンテナの幅 */
+    align-content: center;
+} 
+
+
+/* ボタンのスタイル */
+.button {
+    width: 100px; /* ボタンの幅 */
+    margin: 10px; /* ボタン間のマージン */
+    background-color: rgb(40,46,61);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}   
+.button:hover {
+    background-color: #0056b3;
+}
+.button-container{
+    display: flex;
+
+}
+
+
+/* スマホ版のスタイル 
+@media only screen and (max-width: 400px) {
+    #sketch-container, #chart-container {
+        width: 90%;
+        height: 90%; 
+    }
+}*/
