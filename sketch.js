@@ -66,6 +66,7 @@ function play(){
         background(40,46,61); //画面のリセット
         //console.log(circles.length);
         // 各円を描画し、移動させる
+        console.log(circles.length);
         for (let i = 0; i < circles.length; i++) {
             let circle = circles[i];
             let parent1 = circles[i];
@@ -162,3 +163,16 @@ function stopAnimation() {
     // アニメーションフラグをfalseに設定して、アニメーションを停止する
     isAnimating = false;
 }
+
+const checkVariable = setInterval(() => {
+    if (circles.length === 0) {
+        alert('文明が崩壊しました!');
+        clearInterval(checkVariable); // インターバルをクリア
+        isAnimating = false;
+    }
+    else if(circles.length > 1000){
+        alert('実行爆発が発生しました!');
+        clearInterval(checkVariable); // インターバルをクリア
+        isAnimating = false;
+    }
+}, 100);
