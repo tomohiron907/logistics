@@ -8,7 +8,8 @@ let speed = 2;
 class Circle {
     constructor(x, y) {
         this.sex = (Math.random()>0.5) ? 'Male' :'Female'; 
-        this.lifeSpan = Math.random() *environmentNum/circles.length; // 10〜30秒の間でランダムに寿命を設定
+        this.lifeSpan = Math.random() * environmentNum / circles.length;
+        this.lifeSpan = Math.min(this.lifeSpan, 20);
         this.creationTime = new Date();
         this.x = x;
         this.y = y;
@@ -17,12 +18,24 @@ class Circle {
         this.diameter = 10; // 円の直径
         this.canBirth = true;
         this.updateElapsedTime();
+        this.elapsedTime = 0;
+        this.birthCooldown = 500; // 5秒
     }
 
     updateElapsedTime() {
-        const currentTime = Date.now(); // 現在のタイムスタンプを取得
-        this.age = (currentTime - this.creationTime) / 1000; // 経過した時間を秒単位で計算
+        //正規化年齢の更新
+        const currentTime = Date.now(); 
+        this.age = (currentTime - this.creationTime) / 1000; 
         this.normalAge = this.age / this.lifeSpan;
+        
+        //指定時間経過後に再び出産可能にする
+        if (!this.canBirth) {
+            this.elapsedTime += deltaTime; 
+            if (this.elapsedTime >= this.birthCooldown) {
+                this.canBirth = true;
+                this.elapsedTime = 0; 
+            }
+        }
     }
 }
 
@@ -119,23 +132,18 @@ function deleteCircle() {
         }
     }
 }
-function mouseClicked() {
+/*function mouseClicked() {
     // マウスがクリックされたときに実行される関数
     createCircle(mouseX, mouseY);
 }
-//function touchStarted() {
-//    // マウスがクリックされたときに実行される関数
-//    createCircle(mouseX, mouseY);
-//}
+function touchStarted() {
+    // 画面タッチされたときに実行される関数
+    createCircle(mouseX, mouseY);
+}*/
 function windowResized() {
     const container = document.getElementById('sketch-container');
     resizeCanvas(container.offsetWidth, container.offsetHeight);
 }
-setInterval(() => {
-    for (var i = 0; i < circles.length; i++) {
-        circles[i].canBirth = true;
-    }
-}, 1000);
 
 function startAnimation() {
     // アニメーションフラグをtrueに設定して、アニメーションを開始する

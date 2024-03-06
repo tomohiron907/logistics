@@ -16,6 +16,7 @@ body {
 #sketch-container {
     width: 400px; /* コンテナの幅 */
     height: 400px; /* コンテナの高さ */
+    background-color: rgb(40,46,61);
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 10px; /* コンテナ間のスペース */
@@ -23,6 +24,7 @@ body {
 
 #chart-container {
     width: 400px; /* コンテナの幅 */
+    height: auto; /* コンテナの高さ */
     background-color: rgb(40,46,61);
     border-radius: 20px;
     margin-bottom: 10px; /* コンテナ間のスペース */
@@ -34,15 +36,17 @@ body {
     flex-direction: column;
     background-color: rgb(40,46,61);
     border-radius: 20px;
+    align-content: center;
+    justify-content: center;
 }
 .slider {
-    width: 200px; /* スライダの幅 */
+    width: 300px; /* スライダの幅 */
     margin: 10px; /* スライダ間のマージン */
     background-color: rgb(40,46,61);
 }
 .slider-container {
-    width: 400px; /* コンテナの幅 */
-    align-content: center;
+    width: 800px; /* コンテナの幅 */
+
 } 
 
 
@@ -70,10 +74,10 @@ body {
 }
 
 
-/* スマホ版のスタイル 
+
 @media only screen and (max-width: 400px) {
-    #sketch-container, #chart-container {
+    #sketch-container , #chart-container {
         width: 90%;
-        height: 90%; 
+        height: auto; 
     }
-}*/
+}
