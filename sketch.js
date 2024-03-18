@@ -44,7 +44,7 @@ function setup() {
     canvas = createCanvas(container.offsetWidth, container.offsetHeight);
     canvas.parent('sketch-container');
     document.getElementById('startAnimationButton').addEventListener('click', startAnimation);
-    document.getElementById('stopAnimationButton').addEventListener('click', stopAnimation);
+    document.getElementById('stopAnimationButton').addEventListener('click', resetSimulation);
     background(40,46,61);
     transparency = 0;
     // サークルの初期化
@@ -159,19 +159,20 @@ function startAnimation() {
         createCircle(x, y);
     }
 }
-function stopAnimation() {
+function resetSimulation() {
     // アニメーションフラグをfalseに設定して、アニメーションを停止する
     isAnimating = false;
+    setup();
 }
 
 const checkVariable = setInterval(() => {
     if (circles.length === 0) {
-        alert('文明が崩壊しました!');
+        alert('絶滅しました!');
         clearInterval(checkVariable); // インターバルをクリア
         isAnimating = false;
     }
     else if(circles.length > 1000){
-        alert('実行爆発が発生しました!');
+        alert('人口爆発が発生しました!');
         clearInterval(checkVariable); // インターバルをクリア
         isAnimating = false;
     }
