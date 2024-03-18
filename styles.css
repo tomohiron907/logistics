@@ -2,11 +2,22 @@ body {
     background-color: rgb(20,23,31); /* ここに背景色を指定します。 */
     margin: 10px;
     color: white;
-}
-
-.main-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin: 10px;
@@ -38,14 +49,18 @@ body {
     border-radius: 20px;
     align-content: center;
     justify-content: center;
+    margin: 10px;
 }
 .slider {
-    width: 300px; /* スライダの幅 */
+    /* スライダ本体 */
+    width: 200px;  /*スライダの幅 */
     margin: 10px; /* スライダ間のマージン */
     background-color: rgb(40,46,61);
 }
 .slider-container {
-    width: 800px; /* コンテナの幅 */
+    /* スライダとラベル */
+    width: 400px; 
+    margin-left: 10px;
 
 } 
 
@@ -75,9 +90,20 @@ body {
 
 
 
-@media only screen and (max-width: 400px) {
-    #sketch-container , #chart-container {
-        width: 90%;
-        height: auto; 
+/* デバイス幅が600px以下の場合のスタイル */
+@media (max-width: 600px) {
+    .row-container {
+        flex-direction: column;
     }
+
+    #sketch-container,
+    #chart-container,
+    .slider-container, 
+    .sliders-container {
+        width: 100%; /* 幅を100%にすることで親要素に合わせる */
+    }
+
+    /*.slider {
+        width: calc(100% - 20px); /* スライダの幅を親要素の幅からマージンを引いた値にする 
+    }*/
 }

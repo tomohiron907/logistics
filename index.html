@@ -16,42 +16,42 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <img src="logo.svg" width="400">
-
-        <div class="button-container">
-            <button class="button" id="startAnimationButton" >Start Simulation</button>
-            <button class="button" id="stopAnimationButton">Stop Simulation</button>
-            <button class="button" id="tutorialsButton">Tutorials and FAQ</button>
-        </div>
-
+    <img src="logo.svg" width="400" >
+    <div class="row-container">
+        
         <div id="sketch-container">
             <script src="sketch.js"></script>
         </div>
-
+        
         <!-- chart.jsのコンテナ -->
+        <div class="column-container">
 
-        <div id="chart-container">
-            <script src="chart.js"></script>
+            <div class="button-container">
+                <button class="button" id="startAnimationButton" >Start</button>
+                <button class="button" id="stopAnimationButton">Stop</button>
+                <button class="button" id="tutorialsButton">FAQ</button>
+            </div>
+
+            <div id="chart-container">
+                <script src="chart.js"></script>
+            </div>
+
+            <div class="sliders-container">
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="10" class="slider" id="circleNumSlider">
+                    初期数: <span id="circleNumValue">10</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="1000" value="200" class="slider" id="environmentConstSlider">
+                    環境定数: <span id="environmentConstValue">200</span>
+                </div>
+                    <div class="slider-container">
+                    <input type="range" min="0" max="5" value="2.5" class="slider" id="speedSlider">
+                    スピード: <span id="speedValue">2.5</span>
+                </div>
+                <script src="sliders.js"></script>
+            </div>
         </div>
-
-        <div class="sliders-container">
-            <div class="slider-container">
-                <input type="range" min="0" max="100" value="10" class="slider" id="circleNumSlider">
-                初期数: <span id="circleNumValue">10</span>
-            </div>
-            <div class="slider-container">
-                <input type="range" min="0" max="1000" value="200" class="slider" id="environmentConstSlider">
-                環境定数: <span id="environmentConstValue">200</span>
-            </div>
-            <div class="slider-container">
-                <input type="range" min="0" max="5" value="2.5" class="slider" id="speedSlider">
-                スピード: <span id="speedValue">2.5</span>
-            </div>
-            <script src="sliders.js"></script>
-        </div>
-
-
     </div>
 </body>
 </html>
