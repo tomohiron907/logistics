@@ -88,7 +88,19 @@ body {
     display: flex;
 
 }
-
+.question-answer{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(40,46,61);
+    border-radius: 20px;
+    align-content: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 20px;
+    line-height: 40px;
+    word-break: break-all;
+}
 
 
 /* デバイス幅が600px以下の場合のスタイル */

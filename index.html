@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>p5 sample</title>
+    <title>logistics</title>
     
     <!-- 外部ライブラリの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
@@ -29,7 +29,7 @@
             <div class="button-container">
                 <button class="button" id="startAnimationButton" >Start</button>
                 <button class="button" id="stopAnimationButton">Reset</button>
-                <button class="button" id="tutorialsButton">FAQ</button>
+                <button class="button" id="faqButton">FAQ</button>
             </div>
 
             <div id="chart-container">
@@ -53,5 +53,12 @@
             </div>
         </div>
     </div>
+    <script>
+        // JavaScriptでボタンがクリックされたときにFAQ.htmlを表示する処理を記述します
+        document.getElementById('faqButton').addEventListener('click', function() {
+          // FAQ.htmlにリダイレクトする
+          window.location.href = 'faq.html';
+        });
+    </script>
 </body>
 </html>
