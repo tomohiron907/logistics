@@ -1,9 +1,9 @@
-
 let numCircles = 10; // サークルの数
 let circles = [];
 let isAnimating = false;    
 let environmentNum = 200;
 let speed = 2;
+let startTime = Date.now()
 
 class Circle {
     constructor(x, y) {
@@ -58,15 +58,13 @@ function setup() {
 function draw() {
     if (isAnimating){
         play();
+        isTerminated();
     }
-
 }
 
 function play(){
         background(40,46,61); //画面のリセット
-        //console.log(circles.length);
-        // 各円を描画し、移動させる
-        console.log(circles.length);
+
         for (let i = 0; i < circles.length; i++) {
             let circle = circles[i];
             let parent1 = circles[i];
@@ -121,10 +119,12 @@ function isColliding(circle1, circle2) {
     var distance = Math.sqrt(dx * dx + dy * dy);
     return distance < 20 ;
 }
+
 function createCircle(x, y) {
     let circle = new Circle(x, y); // Create a new circle object
     circles.push(circle); // Push the new circle object to the array
 }
+
 function deleteCircle() {
     for (var i = 0; i < circles.length; i++) {
         if (circles[i].age > circles[i].lifeSpan) {
@@ -133,14 +133,7 @@ function deleteCircle() {
         }
     }
 }
-/*function mouseClicked() {
-    // マウスがクリックされたときに実行される関数
-    createCircle(mouseX, mouseY);
-}
-function touchStarted() {
-    // 画面タッチされたときに実行される関数
-    createCircle(mouseX, mouseY);
-}*/
+
 function windowResized() {
     const container = document.getElementById('sketch-container');
     resizeCanvas(container.offsetWidth, container.offsetHeight);
@@ -159,21 +152,20 @@ function startAnimation() {
         createCircle(x, y);
     }
 }
+
 function resetSimulation() {
     // アニメーションフラグをfalseに設定して、アニメーションを停止する
     isAnimating = false;
     setup();
 }
 
-const checkVariable = setInterval(() => {
+function isTerminated(){
     if (circles.length === 0) {
-        alert('絶滅しました!');
-        clearInterval(checkVariable); // インターバルをクリア
+        alert(`${(Date.now() - startTime)/1000}秒で絶滅しました!`);
         isAnimating = false;
     }
     else if(circles.length > 1000){
         alert('人口爆発が発生しました!');
-        clearInterval(checkVariable); // インターバルをクリア
         isAnimating = false;
     }
-}, 100);
+}

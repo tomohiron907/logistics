@@ -3,7 +3,6 @@
 // グラフの初期化
 // グラフの初期化
 var ctx = document.createElement('canvas').getContext('2d');
-var startTime = Date.now(); // スタート時間を記録
 var chartContainer = document.getElementById('chart-container');
 
 chartContainer.appendChild(ctx.canvas);
