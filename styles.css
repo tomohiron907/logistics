@@ -7,6 +7,20 @@ body {
     justify-content: center;
     align-items: center;
 }
+footer {
+    background-color: rgb(20,23,31);
+    color: gray;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.social-media a:link {
+    color: gray; /* 未訪問リンクの色 */
+}
+
+.social-media a:visited {
+color: gray; /* 訪問済みリンクの色 */
+}
 
 .column-container {
     display: flex;
