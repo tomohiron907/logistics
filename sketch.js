@@ -159,13 +159,24 @@ function resetSimulation() {
     setup();
 }
 
-function isTerminated(){
+
+function isTerminated() {
     if (circles.length === 0) {
-        alert(`${(Date.now() - startTime)/1000}秒で絶滅しました!`);
-        isAnimating = false;
-    }
-    else if(circles.length > 1000){
-        alert('人口爆発が発生しました!');
+        var time = (Date.now() - startTime) / 1000;
+        Swal.fire({
+            title: `${time}秒で絶滅しました!`,
+            showCancelButton: true,
+            confirmButtonText: 'Post on X',
+            cancelButtonText: 'キャンセル'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            // ツイート用のURLを生成
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${time}秒で絶滅しました!` + ' #logistics')}`;
+            
+            // 新しいタブでツイートURLを開く
+            window.open(tweetUrl, '_blank');
+            }
+        });
         isAnimating = false;
     }
 }

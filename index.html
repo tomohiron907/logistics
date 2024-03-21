@@ -9,6 +9,11 @@
     <!-- 外部ライブラリの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- SweetAlert2のCSSファイル -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2のJSファイル -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 
     <!-- スタイルシート -->
     <link rel="stylesheet" href="styles.css">
@@ -18,8 +23,9 @@
 <body>
     <img src="logo.svg" width="400" >
     <div class="row-container">
-        
-        <div id="sketch-container">
+        <!-- <a href="https://twitter.com/intent/tweet?button_hashtag=logistics&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #logistics</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        -->
+            <div id="sketch-container">
             <script src="sketch.js"></script>
         </div>
         
@@ -38,12 +44,16 @@
 
             <div class="sliders-container">
                 <div class="slider-container">
-                    <input type="range" min="0" max="100" value="10" class="slider" id="circleNumSlider">
-                    初期数: <span id="circleNumValue">10</span>
+                    <!--<input type="range" min="0" max="100" value="10" class="slider" id="circleNumSlider">
+                    初期数: <span id="circleNumValue">10</span>-->
+                    <input type="range" min="0" max="100" value="1" class="slider" id="circleNumSlider">
+                    初期数: <span id="circleNumValue">1</span>
                 </div>
                 <div class="slider-container">
-                    <input type="range" min="0" max="1000" value="200" class="slider" id="environmentConstSlider">
-                    環境定数: <span id="environmentConstValue">200</span>
+                    <!--<input type="range" min="0" max="1000" value="200" class="slider" id="environmentConstSlider">
+                    環境定数: <span id="environmentConstValue">200</span>-->
+                    <input type="range" min="0" max="1000" value="1" class="slider" id="environmentConstSlider">
+                    環境定数: <span id="environmentConstValue">1</span>
                 </div>
                     <div class="slider-container">
                     <input type="range" min="0" max="5" value="2.5" class="slider" id="speedSlider">
