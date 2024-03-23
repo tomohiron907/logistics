@@ -159,20 +159,20 @@ function resetSimulation() {
     setup();
 }
 
-
 function isTerminated() {
     if (circles.length === 0) {
         var time = (Date.now() - startTime) / 1000;
+        imageURL = chart.toBase64Image();
         Swal.fire({
             title: `${time}秒で絶滅しました!`,
             showCancelButton: true,
             confirmButtonText: 'Post on X',
-            cancelButtonText: 'キャンセル'
+            cancelButtonText: 'キャンセル',
+            imageUrl: imageURL,
         }).then((result) => {
             if (result.isConfirmed) {
             // ツイート用のURLを生成
             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${time}秒で絶滅しました!` + ' #logistics')}`;
-            
             // 新しいタブでツイートURLを開く
             window.open(tweetUrl, '_blank');
             }
