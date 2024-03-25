@@ -171,11 +171,17 @@ function isTerminated() {
             imageUrl: imageURL,
         }).then((result) => {
             if (result.isConfirmed) {
-            // ツイート用のURLを生成
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${time}秒で絶滅しました!` + ' #logistics')}`;
-            // 新しいタブでツイートURLを開く
-            window.open(tweetUrl, '_blank');
+                const url = encodeURIComponent("https://tomohiron907.github.io/logistics/");
+                // ツイート内容をエンコード
+                const tweetContent = encodeURIComponent(`${time}秒で絶滅しました!`);
+
+                // Twitterカードを含んだツイート用のURLを生成
+                const tweetUrl = `https://twitter.com/intent/tweet?url=${url}&text=${tweetContent}&hashtags=logistics`;
+
+                // 新しいタブでツイートURLを開く
+                window.open(tweetUrl, '_blank');
             }
+            
         });
         isAnimating = false;
     }
